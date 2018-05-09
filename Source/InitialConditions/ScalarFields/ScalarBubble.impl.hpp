@@ -30,7 +30,7 @@ void ScalarBubble::compute(Cell<data_t> current_cell) const
     // start with unit lapse and flat metric (must be relaxed for chi)
     vars.lapse = 1;
     vars.chi = 1;
-
+    vars.K=-sqrt(24*M_PI*0.5*pow(0.001,2.0)*pow(1.0,2.0));
     // conformal metric is flat
     FOR1(i) vars.h[i][i] = 1.;
 
@@ -44,8 +44,8 @@ data_t ScalarBubble::compute_phi(Coordinates<data_t> coords) const
 {
     data_t rr = coords.get_radius();
     data_t rr2 = rr * rr;
-    data_t out_phi = m_params.amplitudeSF * rr2 *
-                     exp(-pow(rr - m_params.r_zero / m_params.widthSF, 2.0));
+    data_t out_phi = m_params.amplitudeSF *
+                     exp(-pow((rr - m_params.r_zero) / m_params.widthSF, 2.0))+1.;
 
     return out_phi;
 }
