@@ -23,9 +23,25 @@ void ScalarBubble::compute(Cell<data_t> current_cell) const
     VarsTools::assign(vars, 0.); // Set only the non-zero components below
     Coordinates<data_t> coords(current_cell, m_dx, m_params.centerSF);
 
+    data_t xx = coords.x;
+    data_t yy = coords.y;
+    data_t zz = coords.z;
+    data_t rr = coords.get_radius();
+
+    data_t Input1;
+    data_t Input2; 
+
+    double m_spacing = m_params.spacing;
+    int indxL = static_cast<int>(floor(rr/m_spacing));
+    int indxH = static_cast<int>(ceil(rr/m_spacing));
+
+    Input1 =  m_params.inputValues1[indxL]
+                + (rr/m_spacing - indxL)*(m_params.inputValues1[indxH] - m_params.inputValues1[indxL]);
+    Input2 =  m_params.inputValues2[indxL]
+                + (rr/m_spacing - indxL)*(m_params.inputValues2[indxH] - m_params.inputValues2[indxL]);
     // set the field vars
-    vars.phi = compute_phi(coords);
-    vars.Pi = 0;
+    vars.phi = 0;  
+    vars.Pi = Input1;
 
     // start with unit lapse and flat metric (must be relaxed for chi)
     vars.lapse = 1;

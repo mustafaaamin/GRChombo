@@ -29,6 +29,9 @@ class ScalarBubble
             centerSF;   //!< Centre of perturbation in initial SF bubble
         double widthSF; //!< Width of bump in initial SF bubble
         double r_zero;  //!< Position of bump relative to centre
+	double *inputValues1;
+	double *inputValues2;
+	double spacing;
     };
 
     //! The constructor

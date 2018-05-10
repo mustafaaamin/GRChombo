@@ -52,7 +52,7 @@ void ScalarFieldLevel::initialData()
     // bubble
     BoxLoops::loop(make_compute_pack(SetValue(0.0),
                                      ScalarBubble(m_p.initial_params, m_dx)),
-                   m_state_new, m_state_new, INCLUDE_GHOST_CELLS);
+                   m_state_new, m_state_new, INCLUDE_GHOST_CELLS,disable_simd());
 }
 
 // Things to do before outputting a checkpoint file

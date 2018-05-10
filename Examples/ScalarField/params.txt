@@ -90,3 +90,7 @@ scalar_mass = 0.002
 # how long and how fast to relax
 relaxtime = 20.0
 relaxspeed = 0.01
+
+#Reading files
+Spacing = 0.01
+SizeArray = 1000000 

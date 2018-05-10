@@ -36,6 +36,36 @@ void auto_read_params(GRParmParse& pp)
     //Dissipation
     pp.load("sigma",sigma);
 
+    //READING TEXTFILE TO MEMEORY 
+// ============================================
+// ============================================
+    pp.load("SizeArray",lines);
+    pp.load("Spacing",spacing);
+
+    inputValues1 = new double [lines];
+    inputValues2 = new double [lines];
+
+    double tmp = 0.0;
+    double tmp1 = 0.0;
+
+
+    ifstream ifs("DataFiles/Pi001.csv");
+
+    ifstream ifs2("DataFiles/grr001.csv");
+
+
+    for (int i = 0; i < lines; ++i){
+            ifs >> tmp;
+            ifs2 >> tmp1;
+
+        inputValues1[i] = tmp;
+        inputValues2[i] = tmp1;
+
+    }
+
+// ============================================
+// ============================================
+
     //Initial and SF data
     pp.load("G_Newton", G_Newton, 1.0);
     pp.load("amplitudeSF", amplitudeSF);
@@ -75,6 +105,10 @@ double kappa1, kappa2, kappa3;
 int covariantZ4;
 Real sigma; //Dissipation
 //Initial data for matter and potential
+int lines;
+double *inputValues1; 
+double  *inputValues2;
+double spacing; 
 double G_Newton;
 Real amplitudeSF, widthSF, r_zero, scalar_mass;
 std::array<double, CH_SPACEDIM> centerSF;

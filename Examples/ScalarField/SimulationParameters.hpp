@@ -8,7 +8,7 @@
 
 // General includes
 #include "GRParmParse.hpp"
-
+#include <fstream>
 // Problem specific includes:
 #include "CCZ4.hpp"
 #include "Potential.hpp"
@@ -31,6 +31,9 @@ class SimulationParameters
         initial_params.widthSF = widthSF;
         initial_params.r_zero = r_zero;
 
+        initial_params.inputValues1 = inputValues1;
+        initial_params.inputValues2 = inputValues2;
+	initial_params.spacing = spacing;
         // Fill in the potential parameters
         potential_params.scalar_mass = scalar_mass;
 
